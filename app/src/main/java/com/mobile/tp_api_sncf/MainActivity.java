@@ -1,6 +1,8 @@
 package com.mobile.tp_api_sncf;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
@@ -30,9 +32,13 @@ public class MainActivity extends AppCompatActivity {
 
     RequestQueue queue;
     JSONObject jsonfound = new JSONObject();
+    ArrayList<String> jsonToDisplay = new ArrayList<>();
+    String[] data1, data2;
 
     TextView textView;
     EditText etURL;
+
+    RecyclerView rvObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +46,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         this.textView = findViewById(R.id.text);
-
         this.etURL = findViewById(R.id.etURL);
+        this.rvObject = findViewById(R.id.rvObject);
+
+//        RecyclerAdapter ra = new RecyclerAdapter(this, this.jsonToDisplay);
+
+    }
+
+    public void setRV(){
+        RecyclerAdapter ra = new RecyclerAdapter(this, this.data1, this.data2);
+        this.rvObject.setAdapter(ra);
+        this.rvObject.setLayoutManager(new LinearLayoutManager(this));
     }
 
     public void getCommercialModes(View v){
@@ -49,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         getApiResponse();
         setCommercialModesTextResponse();
+        setRV();
     }
 
     public void getJourneysBetween(View v){
@@ -56,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
         getApiResponse();
         setJourneysBetweenTextResponse();
+        setRV();
     }
 
     public void getJourneysFrom(View v){
@@ -63,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
         getApiResponse();
         setJourneysFromTextResponse();
+        setRV();
     }
 
     public void getApiResponse() {
@@ -97,86 +115,54 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setCommercialModesTextResponse() {
-        ArrayList<ArrayList<String>> alS = new ArrayList<>();
-        String display = "";
-
         try {
             JSONArray jsonArray = jsonfound.getJSONArray("commercial_modes");
-            ArrayList<String> temp = new ArrayList<>();
+
+            this.data1 = new String[jsonArray.length()];
+            this.data2 = new String[jsonArray.length()];
+
             for(int i=0; i<jsonArray.length(); i++) {
-                temp.add(jsonArray.getJSONObject(i).get("id").toString());
-                temp.add(jsonArray.getJSONObject(i).get("name").toString());
-                alS.add(temp);
-                temp = new ArrayList<>();
-            }
+                this.data1[i] = jsonArray.getJSONObject(i).get("id").toString();
 
-
-            for(ArrayList<String> al : alS) {
-                display += "id   = " + al.get(0) + "\n";
-                display += "name = " + al.get(1) + "\n";
-                display += "\n\n\n";
+                this.data2[i] = jsonArray.getJSONObject(i).get("name").toString();
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        this.textView.setText(display);
     }
 
     private void setJourneysBetweenTextResponse() {
-        ArrayList<ArrayList<String>> alS = new ArrayList<>();
-        String display = "";
-
         try {
             JSONArray jsonArray = jsonfound.getJSONArray("journeys").getJSONObject(0).getJSONArray("sections");
-            ArrayList<String> temp = new ArrayList<>();
+
+            this.data1 = new String[jsonArray.length()];
+            this.data2 = new String[jsonArray.length()];
+
             for(int i=0; i<jsonArray.length(); i++) {
-                temp.add(jsonArray.getJSONObject(i).getJSONObject("from").get("name").toString());
-                temp.add(jsonArray.getJSONObject(i).getJSONObject("to").get("name").toString());
-                alS.add(temp);
-                temp = new ArrayList<>();
-            }
-
-
-            for(ArrayList<String> al : alS) {
-                display += "id   = " + al.get(0) + "\n";
-                display += "name = " + al.get(1) + "\n";
-                display += "\n\n\n";
+                this.data1[i] = jsonArray.getJSONObject(i).getJSONObject("from").get("name").toString();
+                this.data2[i] = jsonArray.getJSONObject(i).getJSONObject("to").get("name").toString();
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        this.textView.setText(display);
     }
 
     private void setJourneysFromTextResponse() {
-        ArrayList<ArrayList<String>> alS = new ArrayList<>();
-        String display = "";
-
         try {
             JSONArray jsonArray = jsonfound.getJSONArray("departures");
-            ArrayList<String> temp = new ArrayList<>();
+
+            this.data1 = new String[jsonArray.length()];
+            this.data2 = new String[jsonArray.length()];
+
             for(int i=0; i<jsonArray.length(); i++) {
-                temp.add("Montparnasse");
-                temp.add(jsonArray.getJSONObject(i).getJSONObject("display_informations").get("direction").toString());
-                alS.add(temp);
-                temp = new ArrayList<>();
-            }
-
-
-            for(ArrayList<String> al : alS) {
-                display += "from = " + al.get(0) + "\n";
-                display += "to   = " + al.get(1) + "\n";
-                display += "\n\n\n";
+                this.data1[i] = "Montparnasse";
+                this.data2[i] = jsonArray.getJSONObject(i).getJSONObject("display_informations").get("direction").toString();
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        this.textView.setText(display);
     }
 }
