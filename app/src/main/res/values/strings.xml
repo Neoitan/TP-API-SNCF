@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TP-API-SNCF</string>
+    <string name="URLBase">api.sncf.com/v1/coverage/sncf/</string>
 </resources>
