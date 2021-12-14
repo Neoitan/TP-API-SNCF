@@ -7,8 +7,9 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
@@ -117,8 +118,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:inputType="textPersonName"
                         android:hint="From"
+                        android:inputType="textPersonName"
                         android:text="75056"
                         android:visibility="invisible" />
 
@@ -128,10 +129,10 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:inputType="textPersonName"
                         android:hint="To"
+                        android:inputType="textPersonName"
                         android:text="69123"
-                        android:visibility="invisible"/>
+                        android:visibility="invisible" />
 
                     <EditText
                         android:id="@+id/etToMode3"
@@ -139,16 +140,17 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:inputType="textPersonName"
                         android:hint="To"
+                        android:inputType="textPersonName"
                         android:text="87391003"
-                        android:visibility="invisible"/>
+                        android:visibility="invisible" />
 
                 </LinearLayout>
 
             </TableRow>
 
             <TableRow>
+
                 <Button
                     android:id="@+id/bExecuteMode2"
                     android:layout_width="wrap_content"
@@ -218,11 +220,32 @@
 
         </TableLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvObject"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvObject"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="32dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:layout_editor_absoluteX="1dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:lineSpacingExtra="8sp"
+        android:text="Lisa DUPONT - Antoine LEVASSEUR\nTP MOBILE IWPCS"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvObject"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="1dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
