@@ -15,8 +15,7 @@
 
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="2">
+            android:layout_height="wrap_content">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -30,29 +29,146 @@
 
                     <Button
                         android:id="@+id/bChoice1"
-                        android:onClick="getCommercialModes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="getCommercialModes"
                         android:text="Commercial modes" />
 
                     <Button
                         android:id="@+id/bChoice2"
-                        android:onClick="getJourneysBetween"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Paris - Lyon" />
+                        android:onClick="showMode2"
+                        android:text="From -> To" />
 
                     <Button
                         android:id="@+id/bChoice3"
-                        android:onClick="getJourneysFrom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Départs Montparnasse" />
+                        android:onClick="showMode3"
+                        android:text="Départs Transillien" />
                 </LinearLayout>
 
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvFromMode2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="from"
+                        android:textAllCaps="false"
+                        android:textSize="24sp"
+                        android:textStyle="bold|italic"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/tvToMode2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="to"
+                        android:textAllCaps="false"
+                        android:textSize="24sp"
+                        android:textStyle="bold|italic"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/tvToMode3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="to"
+                        android:textAllCaps="false"
+                        android:textSize="24sp"
+                        android:textStyle="bold|italic"
+                        android:visibility="invisible" />
+
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/etFromMode2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:hint="From"
+                        android:text="75056"
+                        android:visibility="invisible" />
+
+                    <EditText
+                        android:id="@+id/etToMode2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:hint="To"
+                        android:text="69123"
+                        android:visibility="invisible"/>
+
+                    <EditText
+                        android:id="@+id/etToMode3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:hint="To"
+                        android:text="87391003"
+                        android:visibility="invisible"/>
+
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow>
+                <Button
+                    android:id="@+id/bExecuteMode2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="getJourneysBetween"
+                    android:text="Execute"
+                    android:visibility="invisible" />
+            </TableRow>
+
+            <TableRow>
+
+                <Button
+                    android:id="@+id/bExecuteMode3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="getJourneysFrom"
+                    android:text="Execute"
+                    android:visibility="invisible" />
             </TableRow>
 
             <TableRow
@@ -66,45 +182,38 @@
                     android:layout_weight="1"
                     android:text="@string/URLBase"
                     android:textAlignment="center"
-                    android:textSize="20sp" />
+                    android:textAllCaps="false"
+                    android:textSize="24sp"
+                    android:textStyle="bold|italic" />
             </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <EditText
-                    android:id="@+id/etURL"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="someText"
-                    android:inputType="textPersonName"
-                    android:text="Suite de l'url"
-                    android:textAlignment="center" />
-            </TableRow>
-
-<!--            <TableRow-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent">-->
-
-<!--                <Button-->
-<!--                    android:id="@+id/bExecute"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:text="Executer URL" />-->
-<!--            </TableRow>-->
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/text"
+                    android:id="@+id/tvURL"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ProgressBar
+                    android:id="@+id/pbChargement"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:visibility="invisible" />
+
             </TableRow>
 
         </TableLayout>
@@ -112,7 +221,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvObject"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1" />
 
     </LinearLayout>
