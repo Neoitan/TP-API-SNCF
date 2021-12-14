@@ -202,6 +202,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Appel de la requête
     public void getApiResponse() {
+        // On affiche la barre de chargement le temps de la requête
         this.pbChargement.setVisibility(View.VISIBLE);
         String urlComplete = this.url + this.tvURL.getText();
 
@@ -225,6 +226,8 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                         }
                         setRV();
+
+                        // On cache la barre de chargement car la requête est finie
                         pbChargement.setVisibility(View.INVISIBLE);
 
                     }
